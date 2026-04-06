@@ -1,4 +1,4 @@
-﻿# MUST RUN AS ADMINISTRATOR
+# MUST RUN AS ADMINISTRATOR
 
 [CmdletBinding()]
 Param(
@@ -30,7 +30,7 @@ Process {
 	if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 		# If not, restart the script with elevated privileges
 		$scriptPath = $PSCommandPath
-		Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"  `"$InputObject`" " -Verb RunAs
+		Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"  `"$($InputObject | gi)`" " -Verb RunAs
 		exit
 	}
 
